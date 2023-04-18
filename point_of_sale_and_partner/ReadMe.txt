@@ -1,4 +1,3 @@
--pour ajouter les  Types d'assurance : Point de Vente-> Configuration->Assurance
--Pour ajouter les Médecins : Point de Vente-> Configuration->Médecins
-
-Ne modifiez pas le nom du projet(sinon vous serez amenés à le modifier dans les fichiers JS)
+To add insurance types: Point of Sale -> Configuration -> Insurance
+To add doctors: Point of Sale -> Configuration -> Doctors
+Do not modify the project name (otherwise, you will have to modify it in the JS files).

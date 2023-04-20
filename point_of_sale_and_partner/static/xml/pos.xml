@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template_receipt" xml:space="preserve">
+    <t t-extend="PosTicket">
+            <t t-jquery='.pos-sale-ticket' t-operation='append'>  
+                <br />
+                <t t-if='patient_name'>
+                    <table class='receipt-change'>
+                            <td>Patient:</td>
+                            <td class="pos-right-align">
+                                <t t-esc="patient_name"/>
+                            </td>
+                    </table>
+                </t>
+                <t t-if='x_numCheque'>
+                    <table class='receipt-change'>
+                            <td>№ d'assurance:</td>
+                            <td class="pos-right-align">
+                                <t t-esc="x_numCheque"/>
+                            </td>
+                    </table>
+                </t>
+                <t t-if='assurance2'>
+                    <table class='receipt-change'>
+                            <td>Type d'assurance:</td>
+                            <td class="pos-right-align">
+                                <t t-esc="assurance2"/>
+                            </td>
+                    </table>
+                </t>
+                <t t-if='medecin2'>
+                    <table class='receipt-change'>
+                            <td>Médecin:</td>
+                            <td class="pos-right-align">
+                                <t t-esc="medecin2"/>
+                            </td>
+                    </table>
+                </t>
+            </t>
+   </t>
+
+</templates>

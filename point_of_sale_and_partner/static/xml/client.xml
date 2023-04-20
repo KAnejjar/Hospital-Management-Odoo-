@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="ClientDetailsEdit">
+      <t t-jquery=".client-details-left div:nth-child(1)" t-operation="replace">
+            <div class='client-detail'>
+                <span class='label'>Numéro</span>
+                <input type="text" name="x_numCheque" class="detail x_numCheque" id="x_numCheque" placeholder="№ d'assurance"/>
+            </div>
+        </t>
+        <t t-jquery=".client-details-left div:nth-child(1)" t-operation="after">
+            <div class='client-detail'>
+            <span class='label'>Assurance</span>
+               <select class='detail assurance2' name='assurance2'>
+                    <option value="">Type d'Assurance</option>
+                    <t t-set="first" t-value=""/><t t-set="second" t-value=""/>
+                    <t t-foreach='widget.pos.get_all_assur1() or []' t-as='assur'>
+                        <t t-if="assur_index % 2 === 0"><t t-set="second" t-value="assur"/> </t>
+                        <t t-else=""><t t-set="first" t-value="assur"/>
+                            <option t-att-value="second" t-att-selected="second">
+                                <t t-esc="first"/>
+                            </option>
+                        </t>
+                    </t>
+                </select>
+            </div>
+        </t>
+       
+        <t t-jquery=".client-details-right div:nth-child(4)" t-operation="after">
+            <div class='client-detail'>
+                <span class='label'>Médecin</span>
+                <select class='detail medecin' name='medecin2'>
+                    <option value="">Médecin</option>
+                    <t t-set="first" t-value=""/><t t-set="second" t-value=""/>
+                    <t t-foreach='widget.pos.get_all_medecs1() or []' t-as='medec'>
+                        <t t-if="medec_index % 2 === 0"><t t-set="second" t-value="medec"/> </t>
+                        <t t-else=""><t t-set="first" t-value="medec"/>
+                        <option t-att-value="second" t-att-selected="second">
+                            <t t-esc="first"/>
+                        </option>
+                         </t>
+                    </t>
+                </select>
+            </div>
+        </t>
+    </t>
+
+    <t t-extend="ClientDetails">
+       <t t-jquery=".client-details-left div:nth-child(1)" t-operation="before">
+            <div class='client-detail'>
+                <span class='label'>№assurance</span>
+                <t t-if='partner.x_numCheque'>
+                        <span class='detail x_numCheque'><span style="visibility: hidden">...</span>
+                            <t t-esc='widget.pos.get_x_numCheque1(partner.x_numCheque)'/>
+                        </span>
+                </t>
+                <t t-if='!partner.x_numCheque'>
+                    <span class='detail x_numCheque empty'><span style="visibility: hidden">...</span>
+                        0
+                    </span>
+                </t>
+            </div>
+        </t>
+        <t t-jquery=".client-details-left div:nth-child(1)" t-operation="after">     
+            <div class='client-detail'>
+                <span class='label'>Assurance</span>
+                <t t-if='partner.assurance2'>
+                        <span class='detail assurance2'>
+                            <t t-esc='widget.pos.get_assurance2(partner.assurance2)'/>
+                        </span>
+                </t>
+                <t t-if='!partner.assurance2'>
+                    <span class='detail assurance empty'>N/A</span>
+                </t>
+            </div>
+        </t>
+     
+        <t t-jquery=".client-details-right div:nth-child(2)" t-operation="after">
+            <div class='client-detail'>
+                <span class='label'>Médecin</span>
+                <t t-if='partner.medecin2'>
+                        <span class='detail medecin2'><t t-esc='widget.pos.get_medecin2(partner.medecin2)'/></span>
+                </t>
+                <t t-if='!partner.medecin2'>
+                    <span class='detail medecin2 empty'>N/A</span>
+                </t>
+            </div>
+            <t t-log="widget.pos.get_all_assur1()"/>
+            <t t-log="widget.pos.get_all_medecs1()"/>  
+        </t>
+    </t>
+</templates>

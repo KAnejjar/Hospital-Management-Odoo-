@@ -1,1 +1,59 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template_for_buttons" xml:space="preserve">
+    <t t-extend="ClientListScreenWidget">
+        <t t-jquery=".top-content" t-operation="replace">
+            <section class="top-content">
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Cancel
+                    </span>
+                    <span class='searchbox'>
+                        <input placeholder='Search Patients' />
+                        <span class='search-clear'></span>
+                    </span>
+                    <span class='searchbox'></span>
+                    <span class='button new-customer' role="img" aria-label="Add a patient" title="Add a patient">
+                        <i class='fa fa-user'></i>
+                        <i class='fa fa-plus'></i>
+                    </span>
+                    <span class='button next oe_hidden highlight'>
+                        Select Patient
+                        <i class='fa fa-angle-double-right'></i>
+                    </span>
+                </section>
+        </t>
+    </t>
+    <t t-extend="ActionpadWidget">
+        <t t-jquery=".actionpad" t-operation="replace">
+                <div class="actionpad">
+            <button t-attf-class='button set-customer #{ ( widget.pos.get_client() and widget.pos.get_client().name.length > 10) ? "decentered" : "" }' >
+                <i class='fa fa-user' role="img" aria-label="Customer" title="Customer"/>
+                <t t-if="widget.pos.get_client()">
+                    <t t-esc="widget.pos.get_client().name" />
+                </t>
+                <t t-if="!widget.pos.get_client()">
+                    Patient
+                </t>
+            </button>
+            <button class='button pay'>
+                <div class='pay-circle'>
+                    <i class='fa fa-chevron-right' role="img" aria-label="Pay" title="Pay"/>
+                </div>
+                Payment
+            </button>
+        </div>
+        </t>
+    </t>
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery=".js_customer_name" t-operation="replace">
+            <span class='js_customer_name'>
+                <t t-if="widget.pos.get_client()">
+                    <t t-esc="widget.pos.get_client().name" />
+                    </t>
+                    <t t-if="!widget.pos.get_client()">
+                         Patient
+                    </t>
+            </span>    
+        </t>
+    </t>
+</templates>

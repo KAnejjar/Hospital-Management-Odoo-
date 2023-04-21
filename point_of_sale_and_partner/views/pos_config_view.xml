@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+         <record id="res_partner_uso_cfdi_form" model="ir.ui.view">
+            <field name="name">res.partner.view.form.inherit.ip</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="before">
+                    <field name="x_numCheque"/>
+                    <field name="assurance2"/>
+                    <field name="medecin2"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="pos_assurance_action" model="ir.actions.act_window">
+                <field name="name">Assurance</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">pos.assurance</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="help" type="html">
+                    <p class="o_view_nocontent_smiling_face">
+                        Définir un nouveau type d'assurance 
+                    </p>
+                </field>
+        </record>
+    <record model="ir.ui.view" id="assurance_form_view">
+            <field name="name">assurance.form</field>
+            <field name="model">pos.assurance</field>
+            <field name="arch" type="xml">
+                <form string="Assurance">
+                    <sheet>
+                        <group>
+                            <field name="assurance"/>
+                            <!-- <field name="label"/> -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+    <record model="ir.ui.view" id="assurance_tree_view">
+            <field name="name">assurance.tree</field>
+            <field name="model">pos.assurance</field>
+            <field name="arch" type="xml">
+                <tree string="Types d'assurance">
+                    <field name="assurance"/>
+                    <!-- <field name="label"/> -->
+                </tree>
+            </field>
+    </record>
+
+ <record id="pos_medecin_action" model="ir.actions.act_window">
+        <field name="name">Médecins</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.medecin</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Définir un nouveau Médecin 
+            </p>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medecin_form_view">
+            <field name="name">medecin.form</field>
+            <field name="model">pos.medecin</field>
+            <field name="arch" type="xml">
+                <form string="Médedins">
+                    <sheet>
+                        <group>
+                            <field name="medecin"/>
+                            <!-- <field name="label"/> -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+    <record model="ir.ui.view" id="medecin_tree_view">
+            <field name="name">medecin.tree</field>
+            <field name="model">pos.medecin</field>
+            <field name="arch" type="xml">
+                <tree string="Liste de Medecins">
+                    <field name="medecin"/>
+                    <!-- <field name="label"/> -->
+                </tree>
+            </field>
+    </record>
+
+    <menuitem id="menu_pos_assurance"
+        action="pos_assurance_action"
+        parent="point_of_sale.pos_menu_products_configuration"
+        sequence="1"
+    />
+    <menuitem id="menu_pos_medecin"
+        action="pos_medecin_action"
+        parent="point_of_sale.pos_menu_products_configuration"
+        sequence="1"
+    />
+
+</odoo>

@@ -1,1 +1,12 @@
-
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	    <template id="assets" inherit_id="point_of_sale.assets">
+	        <xpath expr="." position="inside">
+	            <script type="text/javascript" src="/mxs_pos_partner/static/src/js/get_customer.js"/>
+				<script type="text/javascript" src="/mxs_pos_partner/static/src/js/receipt_update.js"/>
+				<script type="text/javascript" src="/mxs_pos_partner/static/src/js/buttons.js"/>
+	        </xpath>
+	    </template>
+	</data>
+</odoo>
